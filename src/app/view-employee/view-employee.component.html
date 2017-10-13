@@ -1,0 +1,47 @@
+<br>
+<div class="row justify-content-md-center">
+  <div class="col-md-auto">
+    <h2>View Employees</h2>
+  </div>
+</div>
+
+<br>
+<div class="row justify-content-md-center">
+  <div class="col-md-auto">
+    Manager:
+    <select [(ngModel)]="value" (ngModelChange)="onSelect(value)">
+      <ng-container *ngFor="let employee of employees">
+        <option *ngIf="employee.employeeroles=='Director'" [value]="employee.employeeId">{{employee.employeeFname}}{{" "+employee.employeeLname}}</option>
+      </ng-container>
+    </select>
+  </div>
+</div>
+
+<br>
+<div>
+  <table class="table table-striped table-bordered table-condensed">
+    <thead>
+    <th>Employee Id</th>
+    <th>Employee FirstName</th>
+    <th>Employee LastName</th>
+    <th>Employee Roles</th>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let employee of selectedData">
+      <tr>
+        <td>{{employee.employeeId}}</td>
+        <td>{{employee.employeeFname}}</td>
+        <td>{{employee.employeeLname}}</td>
+        <td>{{employee.employeeroles}}</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>
+
+<br>
+<div class="row justify-content-md-center">
+  <div class="col-md-auto">
+    <button type="button" class="btn btn-primary" [routerLink]="['/addemployee']">Add Employee</button>
+  </div>
+</div>

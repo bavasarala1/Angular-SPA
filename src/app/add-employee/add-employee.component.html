@@ -1,0 +1,65 @@
+<br>
+<div class="row justify-content-md-center">
+  <div class="col-md-auto">
+    <h2>Add New Employee</h2>
+  </div>
+</div>
+
+<div>
+  <form name="user-form" #userForm="ngForm"  (submit)="addEmployee(); userForm.resetForm()">
+    <div class="form-group">
+      <label for="managerId">Select Manager</label>
+      <select id="managerId" #managerId="ngModel" required class="form-control" [(ngModel)]="employee.emplpyeeManagerId"
+              name="managerId">
+        <ng-container *ngFor="let employee of employees">
+          <option *ngIf="employee.employeeroles=='Director'" [value]="employee.employeeId">{{employee.employeeFname}}{{" "+employee.employeeLname}}</option>
+        </ng-container>
+      </select>
+      <div *ngIf="managerId.errors && (managerId.dirty || managerId.touched)" class="error">
+        <p [hidden]="!managerId.errors.required">Selection of manager is required</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="employeeId">EmployeeID</label>
+      <input type="text" #employeeId="ngModel" required minlength="2" [(ngModel)]="employee.employeeId" name="employeeId"
+             class="form-control" id="employeeId" placeholder="Enter EmployeeID">
+      <div *ngIf="employeeId.errors && (employeeId.dirty || employeeId.touched)" class="error">
+        <p [hidden]="!employeeId.errors.required">EmployeeId is required</p>
+        <p [hidden]="!employeeId.errors.minlength">EmployeeId must be of 2 or more chars</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="employeFname">FirstName</label>
+      <input type="text" #employeFname="ngModel" required minlength="4" [(ngModel)]="employee.employeeFname" name="employeFname"
+             class="form-control" id="employeFname" placeholder="Enter First Name">
+      <div *ngIf="employeFname.errors && (employeFname.dirty || employeFname.touched)" class="error">
+        <p [hidden]="!employeFname.errors.required">First Name is required</p>
+        <p [hidden]="!employeFname.errors.minlength">First Name must be of 4 or more chars</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="employeLname">LastName</label>
+      <input type="text" #employeLname="ngModel" required minlength="4" [(ngModel)]="employee.employeeLname" name="employeLname" class="form-control"
+             id="employeLname" placeholder="Enter LastName">
+      <div *ngIf="employeLname.errors && (employeLname.dirty || employeLname.touched)" class="error">
+        <p [hidden]="!employeLname.errors.required">Last Name is required</p>
+        <p [hidden]="!employeLname.errors.minlength">Last Name must be of 4 or more chars</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="roles">Select Employee Role</label>
+      <select multiple id="roles" #roles="ngModel" required class="form-control" [(ngModel)]="employee.employeeroles"
+              name="roles">
+        <option *ngFor="let role of employeeroles" [ngValue]="role">{{role}}</option>
+      </select>
+      <div *ngIf="roles.errors && (roles.dirty || roles.touched)" class="error">
+        <p [hidden]="!roles.errors.required">Role is required</p>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Add Employee</button>
+  </form>
+</div>
+<br><br>
+<button type="button" class="btn btn-primary" [routerLink]="['/employees']">View Employees</button>
