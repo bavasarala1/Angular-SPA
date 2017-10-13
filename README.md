@@ -1,5 +1,12 @@
 # Tylerangular
 
+Description About the Project:
+
+I have developed the two screens of the application. The first Screen is ViewEmployees which is used to view the Employees under a certain Manager. You can select the Manager using the dropdown bar in the screen. The Second Screen is AddEmployee which is used to Add the Employees. I have used Angular for developing the Project.
+
+To Run this project download the repository and in the command line use command npm install, it will install the node dependencies and after that ng serve. That's it your application will run on `http://localhost:4200/`.
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.3.
 
 ## Development server
